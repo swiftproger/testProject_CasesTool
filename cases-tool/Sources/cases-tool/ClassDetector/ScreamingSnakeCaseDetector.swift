@@ -23,7 +23,8 @@ public class ScreamingSnakeCaseDetector: CaseDetector {
         guard let separator = CaseType.screamingSnakeCase.separator else { return nil }
         if input.contains(separator) &&
             input == input.uppercased() &&
-            !CaseType.containsOtherSeparators(in: input, excluding: .screamingSnakeCase) {
+            !CaseType.containsOtherSeparators(in: input, excluding: .screamingSnakeCase) &&
+            input.filter({ $0 != separator }).count > 0 {
             return .screamingSnakeCase
         }
         return nil
