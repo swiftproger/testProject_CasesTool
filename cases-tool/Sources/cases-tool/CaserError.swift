@@ -55,3 +55,7 @@ enum CaserError: LocalizedError {
         }
     }
 }
+
+// MARK: - extension CaserError
+
+extension CaserError: Equatable {}
