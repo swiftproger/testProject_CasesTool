@@ -23,7 +23,8 @@ public class TrainCaseDetector: CaseDetector {
         guard let separator = CaseType.trainCase.separator else { return nil }
         if input.contains(separator) &&
             input.split(separator: separator).allSatisfy({ $0.first!.isUppercase }) &&
-            !CaseType.containsOtherSeparators(in: input, excluding: .trainCase) {
+            !CaseType.containsOtherSeparators(in: input, excluding: .trainCase) &&
+            input.filter({ $0 != separator }).count > 0 {
             return .trainCase
         }
         return nil
