@@ -20,8 +20,11 @@ public class PascalCaseDetector: CaseDetector {
     /// - Throws: `CaserError.unknownCaseType`, если строка не соответствует формату `PascalCase`.
     /// - Returns: Тип case `CaseType.pascalCase`, если строка соответствует формату.
     public func detect(_ input: String) throws -> CaseType? {
-        if !CaseType.containsSeparator(in: input) &&
-            input.first!.isUppercase {
+        guard let firstChar = input.first, firstChar.isUppercase else {
+            return nil
+        }
+        
+        if !CaseType.containsSeparator(in: input) {
             var hasLowerCase = false
             for char in input {
                 if char.isLowercase {
