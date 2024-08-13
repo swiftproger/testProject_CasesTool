@@ -8,12 +8,14 @@
 
 import Foundation
 
-/// Функция, которая определяет тип кейса для входной строки
+let caserManager = CaserManager()
+
+/// Функция, которая определяет тип case для входной строки
 public func recognizeCase(from string: String) throws -> CaseType {
-    fatalError("Write your code here")
+    try caserManager.detectCase(of: string)
 }
 
-/// Функция, которая конвертирует строку в заданный кейс
+/// Функция, которая конвертирует строку в заданный case
 public func convertCase(of string: String, to targetCase: CaseType) throws -> String {
-    fatalError("Write your code here")
+    try caserManager.convert(string, to: targetCase)
 }
