@@ -25,7 +25,8 @@ public class SnakeCaseDetector: CaseDetector {
         
         if input.contains(separator) &&
             input == input.lowercased() &&
-            !CaseType.containsOtherSeparators(in: input, excluding: .snakeCase) {
+            !CaseType.containsOtherSeparators(in: input, excluding: .snakeCase) &&
+            input.filter({ $0 != separator }).count > 0 {
             return .snakeCase
         }
         return nil
