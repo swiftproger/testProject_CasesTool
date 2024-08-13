@@ -71,3 +71,38 @@ public enum CaseType: Equatable, CaseIterable {
         }
     }
 }
+
+// MARK: - extension CaseType
+
+extension CaseType {
+    
+    // MARK: - Method
+    
+    /// Проверяет, содержит ли строка какой-либо разделитель, соответствующий одному из типов кейсов.
+    ///
+    /// - Parameter input: Строка для проверки.
+    /// - Returns: `true`, если строка содержит хотя бы один из разделителей, определенных в `CaseType`.
+    public static func containsSeparator(in input: String) -> Bool {
+        for caseType in CaseType.allCases {
+            if let separator = caseType.separator, input.contains(separator) {
+                return true
+            }
+        }
+        return false
+    }
+    
+    /// Проверяет, содержит ли строка разделители, отличные от указанного разделителя.
+    ///
+    /// - Parameters:
+    ///   - input: Строка для проверки.
+    ///   - excluding: Разделитель, который нужно исключить из проверки.
+    /// - Returns: `true`, если строка содержит разделители, отличные от указанного.
+    public static func containsOtherSeparators(in input: String, excluding currentCaseType: CaseType) -> Bool {
+        for caseType in CaseType.allCases {
+            if let separator = caseType.separator, separator != currentCaseType.separator, input.contains(separator) {
+                return true
+            }
+        }
+        return false
+    }
+}
