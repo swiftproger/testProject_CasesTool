@@ -21,7 +21,10 @@ public class PathCaseDetector: CaseDetector {
     /// - Returns: Тип case `CaseType.pathCase`, если строка соответствует формату.
     public func detect(_ input: String) throws -> CaseType? {
         guard let separator = CaseType.pathCase.separator else { return nil }
-        if input.contains(separator) && input == input.lowercased() && !CaseType.containsOtherSeparators(in: input, excluding: .pathCase) {
+        if input.contains(separator) && 
+            input == input.lowercased() &&
+            !CaseType.containsOtherSeparators(in: input, excluding: .pathCase) &&
+            input.filter({ $0 != separator }).count > 0 {
             return .pathCase
         }
         return nil
