@@ -21,7 +21,10 @@ public class KebabCaseDetector: CaseDetector {
     /// - Returns: Тип case `CaseType.kebabCase`, если строка соответствует формату.
     public func detect(_ input: String) throws -> CaseType? {
         guard let separator = CaseType.kebabCase.separator else { return nil }
-        if input.contains(separator) && input == input.lowercased() && !CaseType.containsOtherSeparators(in: input, excluding: .kebabCase) {
+        if input.contains(separator) &&
+            input == input.lowercased() &&
+            !CaseType.containsOtherSeparators(in: input, excluding: .kebabCase) &&
+            input.filter({ $0 != separator }).count > 0 {
             return .kebabCase
         }
         return nil
