@@ -5,6 +5,9 @@ import PackageDescription
 
 let package = Package(
     name: "cases-tool",
+    platforms: [
+        .iOS(.v14)
+    ],
     products: [
         .library(
             name: "Caser",
