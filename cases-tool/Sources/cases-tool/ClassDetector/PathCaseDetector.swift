@@ -7,7 +7,7 @@
 /// `PathCaseDetector` проверяет, соответствует ли строка формату `path/case`, где слова разделяются символами слэша (`/`), и все буквы находятся в нижнем регистре.
 public class PathCaseDetector: CaseDetector {
     
-    // MARK: - Initializer
+    // MARK: - Initialiser
     
     /// Инициализатор по умолчанию.
     public init() {}
@@ -20,8 +20,10 @@ public class PathCaseDetector: CaseDetector {
     /// - Throws: `CaserError.unknownCaseType`, если строка не соответствует формату `path/case`.
     /// - Returns: Тип case `CaseType.pathCase`, если строка соответствует формату.
     public func detect(_ input: String) throws -> CaseType? {
+        
         guard let separator = CaseType.pathCase.separator else { return nil }
-        if input.contains(separator) && 
+        
+        if input.contains(separator) &&
             input == input.lowercased() &&
             !CaseType.containsOtherSeparators(in: input, excluding: .pathCase) &&
             input.filter({ $0 != separator }).count > 0 {

@@ -7,7 +7,7 @@
 /// `DotCaseDetector` проверяет, соответствует ли строка формату `dot.case`, где слова разделены точками (`.`), и все буквы находятся в нижнем регистре.
 public class DotCaseDetector: CaseDetector {
     
-    // MARK: - Initializer
+    // MARK: - Initialiser
     
     /// Инициализатор по умолчанию.
     public init() {}
@@ -20,7 +20,9 @@ public class DotCaseDetector: CaseDetector {
     /// - Throws: `CaserError.unknownCaseType`, если строка не соответствует формату `dot.case`.
     /// - Returns: Тип case `CaseType.dotCase`, если строка соответствует формату.
     public func detect(_ input: String) throws -> CaseType? {
+        
         guard let separator = CaseType.dotCase.separator else { return nil }
+        
         if input.contains(separator) &&
             input == input.lowercased() &&
             !CaseType.containsOtherSeparators(in: input, excluding: .dotCase) &&

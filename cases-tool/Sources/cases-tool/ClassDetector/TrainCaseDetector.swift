@@ -7,7 +7,7 @@
 /// `TrainCaseDetector` проверяет, соответствует ли строка формату `Train-Case`, где слова разделены дефисом (`-`), и каждое слово начинается с заглавной буквы.
 public class TrainCaseDetector: CaseDetector {
     
-    // MARK: - Initializer
+    // MARK: - Initialiser
     
     /// Инициализатор по умолчанию.
     public init() {}
@@ -20,7 +20,9 @@ public class TrainCaseDetector: CaseDetector {
     /// - Throws: `CaserError.unknownCaseType`, если строка не соответствует формату `Train-Case`.
     /// - Returns: Тип case `CaseType.trainCase`, если строка соответствует формату.
     public func detect(_ input: String) throws -> CaseType? {
+        
         guard let separator = CaseType.trainCase.separator else { return nil }
+        
         if input.contains(separator) &&
             input.split(separator: separator).allSatisfy({ $0.first!.isUppercase }) &&
             !CaseType.containsOtherSeparators(in: input, excluding: .trainCase) &&

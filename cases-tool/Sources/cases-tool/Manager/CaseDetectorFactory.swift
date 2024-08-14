@@ -14,8 +14,8 @@ public class CaseDetectorFactory {
     
     private let detectors: [CaseDetector]
     private let separators: Set<Character>
-
-    // MARK: - Initializer
+    
+    // MARK: - Initialiser
     
     /// Инициализирует новую фабрику с набором детекторов для различных типов case.
     public init() {
@@ -29,13 +29,13 @@ public class CaseDetectorFactory {
             DotCaseDetector(),
             PathCaseDetector()
         ]
-
+        
         // Динамическое получение всех разделителей из CaseType
         self.separators = Set(CaseType.allCases.compactMap { $0.separator })
     }
     
-    // MARK: - public Method
-
+    // MARK: - Public Method
+    
     /// Основной метод для определения типа case строки.
     /// - Parameter input: Строка для анализа.
     /// - Throws: `CaserError` в случае ошибок при анализе строки.
@@ -44,12 +44,12 @@ public class CaseDetectorFactory {
         try checkLeadingAndTrailingSeparators(in: input)
         try checkForExtraSequencedSeparators(in: input)
         try checkForMultipleSeparators(in: input)
-
+        
         return try detectCaseType(in: input)
     }
     
     // MARK: - Private Method
-
+    
     /// Проверяет наличие лишних разделителей в начале и конце строки.
     /// - Parameter input: Строка для анализа.
     /// - Throws: `CaserError.uselessLeadingSeparator`, если разделитель в начале строки, или `CaserError.uselessTrailingSeparator`, если разделитель в конце строки.
@@ -57,12 +57,12 @@ public class CaseDetectorFactory {
         if let firstChar = input.first, separators.contains(firstChar) {
             throw CaserError.uselessLeadingSeparator(separator: firstChar)
         }
-
+        
         if let lastChar = input.last, separators.contains(lastChar) {
             throw CaserError.uselessTrailingSeparator(separator: lastChar)
         }
     }
-
+    
     /// Проверяет наличие нескольких подряд идущих одинаковых разделителей.
     /// - Parameter input: Строка для анализа.
     /// - Throws: `CaserError.extraSequencedSeparators`, если найдены последовательные одинаковые разделители.
@@ -70,7 +70,7 @@ public class CaseDetectorFactory {
         var previousChar: Character?
         var currentSequence = ""
         var allSequences: [String] = []
-
+        
         for char in input {
             if let previous = previousChar, separators.contains(char) {
                 if previous == char {
@@ -89,33 +89,33 @@ public class CaseDetectorFactory {
             }
             previousChar = char
         }
-
+        
         if currentSequence.count > 1 {
             allSequences.append(currentSequence)
         }
-
+        
         if !allSequences.isEmpty {
             throw CaserError.extraSequencedSeparators(separators: allSequences)
         }
     }
-
+    
     /// Проверяет наличие нескольких различных разделителей в строке.
     /// - Parameter input: Строка для анализа.
     /// - Throws: `CaserError.multipleSeparators`, если найдены различные разделители.
     private func checkForMultipleSeparators(in input: String) throws {
         var foundSeparators: [Character] = []
-
+        
         for char in input {
             if separators.contains(char) || (!char.isLetter && !char.isNumber) {
                 foundSeparators.append(char)
             }
         }
-
+        
         if Set(foundSeparators).count > 1 {
             throw CaserError.multipleSeparators(separators: foundSeparators)
         }
     }
-
+    
     /// Определяет тип case строки на основе доступных детекторов.
     /// - Parameter input: Строка для анализа.
     /// - Throws: `CaserError.unknownCaseType`, если тип case не был определен.

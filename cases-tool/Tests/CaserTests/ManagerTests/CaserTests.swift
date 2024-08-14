@@ -2,9 +2,9 @@ import XCTest
 @testable import cases_tool
 
 final class CaserTests: XCTestCase {
-
+    
     func testCorrectCaseRecognition() throws {
-
+        
         /// given
         let testData: [String: CaseType] = [
             "kebab-case-string-here" : .kebabCase,
@@ -16,7 +16,7 @@ final class CaserTests: XCTestCase {
             "camelCaseStringHere"    : .camelCase,
             "PascalCaseStringHere"   : .pascalCase
         ]
-
+        
         for data in testData {
             
             /// when
@@ -26,7 +26,7 @@ final class CaserTests: XCTestCase {
             XCTAssertEqual(caseType, data.value)
         }
     }
-
+    
     func testCaseRecognitionErrors() throws {
         
         /// given
@@ -61,7 +61,7 @@ final class CaserTests: XCTestCase {
             "incorrect.dot.Case"          : .unknownCaseType,
             "incorrect/path/Case"         : .unknownCaseType
         ]
-
+        
         for data in testData {
             /// when
             XCTAssertThrowsError(try recognizeCase(from: data.key)) { error in
@@ -78,7 +78,7 @@ final class CaserTests: XCTestCase {
     func testCaseConvertation() throws {
         
         /// given
-
+        
         let testStrings = [
             "example_string",
             "example-string",
@@ -89,7 +89,7 @@ final class CaserTests: XCTestCase {
             "example.string",
             "example/string"
         ]
-
+        
         let templateConversions: [CaseType: String] = [
             .snakeCase: "example_string",
             .kebabCase: "example-string",

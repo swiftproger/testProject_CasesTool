@@ -7,7 +7,7 @@
 /// `PascalCaseDetector` проверяет, соответствует ли строка формату `PascalCase`, где каждое слово начинается с заглавной буквы, без разделителей между словами.
 public class PascalCaseDetector: CaseDetector {
     
-    // MARK: - Initializer
+    // MARK: - Initialiser
     
     /// Инициализатор по умолчанию.
     public init() {}
@@ -20,9 +20,8 @@ public class PascalCaseDetector: CaseDetector {
     /// - Throws: `CaserError.unknownCaseType`, если строка не соответствует формату `PascalCase`.
     /// - Returns: Тип case `CaseType.pascalCase`, если строка соответствует формату.
     public func detect(_ input: String) throws -> CaseType? {
-        guard let firstChar = input.first, firstChar.isUppercase else {
-            return nil
-        }
+        
+        guard let firstChar = input.first, firstChar.isUppercase else { return nil }
         
         if !CaseType.containsSeparator(in: input) {
             var hasLowerCase = false

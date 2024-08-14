@@ -6,15 +6,22 @@
 ///
 /// `StringCaseConverter` предоставляет методы для преобразования строк из одного типа case в другой, используя определенные правила для каждого типа case.
 public class StringCaseConverter {
+    
+    // MARK: - Properties
+    
     private let caseDetectorFactory: CaseDetectorFactory
-
+    
+    // MARK: - Initialiser
+    
     /// Инициализатор, принимающий фабрику для определения case.
     ///
     /// - Parameter factory: Фабрика для определения типа case строки. По умолчанию создается новая фабрика.
     public init(factory: CaseDetectorFactory = CaseDetectorFactory()) {
         self.caseDetectorFactory = factory
     }
-
+    
+    // MARK: - Public Method
+    
     /// Конвертирует строку из исходного case в целевой case.
     ///
     /// - Parameters:
@@ -24,15 +31,17 @@ public class StringCaseConverter {
     /// - Returns: Строка, преобразованная в целевой тип case.
     public func convert(_ input: String, to targetCaseType: CaseType) throws -> String {
         let detectedCaseType = try caseDetectorFactory.detectCase(of: input)
-
+        
         if detectedCaseType == targetCaseType {
             return input
         }
-
+        
         let words = splitIntoWords(from: input, by: detectedCaseType)
         return try joinWords(words, to: targetCaseType)
     }
-
+    
+    // MARK: - Private Method
+    
     /// Разделяет строку на слова в зависимости от исходного типа case.
     ///
     /// - Parameters:
@@ -50,7 +59,7 @@ public class StringCaseConverter {
             return [input]
         }
     }
-
+    
     /// Объединяет слова в строку, используя целевой тип case.
     ///
     /// - Parameters:
@@ -80,7 +89,7 @@ public class StringCaseConverter {
             return words.joined(separator: "/").lowercased()
         }
     }
-
+    
     /// Разделяет строку на слова, предполагая, что она написана в `camelCase` или `PascalCase`.
     ///
     /// - Parameter input: Строка для разделения.
@@ -88,7 +97,7 @@ public class StringCaseConverter {
     private func splitCamelOrPascalCase(_ input: String) -> [String] {
         var words: [String] = []
         var currentWord = ""
-
+        
         for char in input {
             if char.isUppercase {
                 if !currentWord.isEmpty {
@@ -99,11 +108,11 @@ public class StringCaseConverter {
                 currentWord.append(char)
             }
         }
-
+        
         if !currentWord.isEmpty {
             words.append(currentWord)
         }
-
+        
         return words
     }
 }
