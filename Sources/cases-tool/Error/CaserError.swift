@@ -39,7 +39,7 @@ public enum CaserError: LocalizedError {
     
     // MARK: - Properties
     
-    var errorDescription: String {
+    public var errorDescription: String {
         switch self {
         case .multipleSeparators(let separators):
             let separatorsString = separators.map(String.init).joined(separator: ", ")
