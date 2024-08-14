@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - CaserError
 
-enum CaserError: LocalizedError {
+public enum CaserError: LocalizedError {
     
     // MARK: - Cases
     

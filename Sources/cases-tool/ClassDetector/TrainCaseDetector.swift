@@ -5,7 +5,7 @@
 /// Детектор для определения строк в формате `Train-Case`.
 ///
 /// `TrainCaseDetector` проверяет, соответствует ли строка формату `Train-Case`, где слова разделены дефисом (`-`), и каждое слово начинается с заглавной буквы.
-public class TrainCaseDetector: CaseDetector {
+class TrainCaseDetector: CaseDetector {
     
     // MARK: - Initialiser
     
