@@ -76,33 +76,36 @@ public enum CaseType: Equatable, CaseIterable {
 
 extension CaseType {
     
-    // MARK: - Method
+    // MARK: - Methods
     
-    /// Проверяет, содержит ли строка какой-либо разделитель, соответствующий одному из типов case.
+    /// Checks if the given string contains any of the separators associated with different `CaseType` values.
     ///
-    /// - Parameter input: Строка для проверки.
-    /// - Returns: `true`, если строка содержит хотя бы один из разделителей, определенных в `CaseType`.
+    /// This method iterates through all `CaseType` values, extracts their associated separators, and checks if
+    /// any of these separators are present in the provided input string.
+    ///
+    /// - Parameter input: The string to be checked for the presence of any separators.
+    /// - Returns: `True` if the input string contains any separator defined in the `CaseType`, otherwise `False`.
     public static func containsSeparator(in input: String) -> Bool {
-        for caseType in CaseType.allCases {
-            if let separator = caseType.separator, input.contains(separator) {
-                return true
-            }
-        }
-        return false
+        return allCases
+            .compactMap(\.separator)
+            .contains(where: input.contains)
     }
     
-    /// Проверяет, содержит ли строка разделители, отличные от указанного разделителя.
+    /// Checks if the given string contains any separators other than the one associated with the specified `CaseType`.
+    ///
+    /// This method iterates through all `CaseType` values, extracts their associated separators, and filters
+    /// them based on their presence in the input string. It then checks if any of the separators found are different
+    /// from the separator associated with the given `CaseType`.
     ///
     /// - Parameters:
-    ///   - input: Строка для проверки.
-    ///   - excluding: Разделитель, который нужно исключить из проверки.
-    /// - Returns: `true`, если строка содержит разделители, отличные от указанного.
+    ///   - input: The string to be checked for the presence of separators.
+    ///   - currentCaseType: The `CaseType` whose separator should be excluded from the check.
+    /// - Returns: `True` if the input string contains any separator different from the one associated with the
+    ///   specified `CaseType`, otherwise `False`.
     public static func containsOtherSeparators(in input: String, excluding currentCaseType: CaseType) -> Bool {
-        for caseType in CaseType.allCases {
-            if let separator = caseType.separator, separator != currentCaseType.separator, input.contains(separator) {
-                return true
-            }
-        }
-        return false
+        return allCases
+            .compactMap(\.separator)
+            .filter(input.contains)
+            .contains { $0 != currentCaseType.separator }
     }
 }
