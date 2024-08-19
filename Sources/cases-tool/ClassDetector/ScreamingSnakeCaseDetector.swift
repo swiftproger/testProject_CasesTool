@@ -2,28 +2,16 @@
 //  ScreamingSnakeCaseDetector.swift
 //
 
-/// Детектор для определения строк в формате `SCREAMING_SNAKE_CASE`.
-///
-/// `ScreamingSnakeCaseDetector` проверяет, соответствует ли строка формату `SCREAMING_SNAKE_CASE`, где слова разделены символом подчеркивания (`_`), и все буквы находятся в верхнем регистре.
-final class ScreamingSnakeCaseDetector: CaseDetector {
+class ScreamingSnakeCaseDetector: CaseDetector {
     
-    // MARK: - Method
-    
-    /// Определяет, является ли строка в формате `SCREAMING_SNAKE_CASE`.
-    ///
-    /// - Parameter input: Строка для анализа.
-    /// - Throws: `CaserError.unknownCaseType`, если строка не соответствует формату `SCREAMING_SNAKE_CASE`.
-    /// - Returns: Тип case `CaseType.screamingSnakeCase`, если строка соответствует формату.
-    public func detect(_ input: String) throws -> CaseType? {
+    public func detect(_ input: String, for caseType: CaseType) -> Bool {
+        guard caseType == .screamingSnakeCase else { return false }
         
-        guard let separator = CaseType.screamingSnakeCase.separator else { return nil }
+        guard let separator = CaseType.screamingSnakeCase.separator else { return false }
         
-        if input.contains(separator) &&
+        return input.contains(separator) &&
             input == input.uppercased() &&
             !CaseType.containsOtherSeparators(in: input, excluding: .screamingSnakeCase) &&
-            input.filter({ $0 != separator }).count > 0 {
-            return .screamingSnakeCase
-        }
-        return nil
+            input.filter({ $0 != separator }).count > 0
     }
 }

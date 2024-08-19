@@ -2,21 +2,14 @@
 //  CamelCaseDetector.swift
 //
 
-/// Детектор для определения строк в формате `camelCase`.
-///
-/// `CamelCaseDetector` проверяет, соответствует ли строка формату `camelCase`, где первое слово начинается с маленькой буквы, а каждое последующее слово с заглавной буквы.
 final class CamelCaseDetector: CaseDetector {
     
-    // MARK: - Method
+    public init() {}
     
-    /// Определяет, является ли строка в формате `camelCase`.
-    ///
-    /// - Parameter input: Строка для анализа.
-    /// - Throws: `CaserError.unknownCaseType`, если строка не соответствует формату `camelCase`.
-    /// - Returns: Тип case `CaseType.camelCase`, если строка соответствует формату.
-    public func detect(_ input: String) throws -> CaseType? {
+    public func detect(_ input: String, for caseType: CaseType) -> Bool {
+        guard caseType == .camelCase else { return false }
         
-        guard let firstChar = input.first, firstChar.isLowercase else { return nil }
+        guard let firstChar = input.first, firstChar.isLowercase else { return false }
         
         if !CaseType.containsSeparator(in: input) {
             var hasUpperCase = false
@@ -25,11 +18,9 @@ final class CamelCaseDetector: CaseDetector {
                     hasUpperCase = true
                 }
             }
-            if hasUpperCase {
-                return .camelCase
-            }
+            return hasUpperCase
         }
         
-        return nil
+        return false
     }
 }
