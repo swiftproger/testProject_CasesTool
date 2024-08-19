@@ -2,16 +2,18 @@
 //  CaseDetector.swift
 //
 
-/// Протокол для детекторов типов case строк.
+/// A protocol for detecting if a given string conforms to a specific case type.
 ///
-/// `CaseDetector` определяет интерфейс для классов, которые должны анализировать строку и определять, соответствует ли она определенному типу case.
-/// Классы, реализующие этот протокол, должны уметь определять тип case строки и возвращать его, либо выбрасывать ошибку, если тип case не был определен.
+/// Conforming types must implement the `detect(_:for:)` method, which checks whether
+/// a given string matches a specified `CaseType`. This protocol is intended to be used
+/// in conjunction with various case types such as `camelCase`, `snake_case`, `PascalCase`, etc.
 public protocol CaseDetector {
-    
-    /// Определяет тип case строки.
+
+    /// Determines whether a given string conforms to the specified `CaseType`.
     ///
-    /// - Parameter input: Строка для анализа.
-    /// - Throws: `CaserError.unknownCaseType`, если строка не соответствует формату, который детектор может распознать.
-    /// - Returns: Определенный тип case (`CaseType`), если строка соответствует одному из типов case, поддерживаемых детектором.
-    func detect(_ input: String) throws -> CaseType?
+    /// - Parameters:
+    ///   - input: The string to be checked.
+    ///   - caseType: The `CaseType` against which the string is to be validated.
+    /// - Returns: A Boolean value indicating whether the string matches the specified `CaseType`.
+    func detect(_ input: String, for caseType: CaseType) -> Bool
 }
