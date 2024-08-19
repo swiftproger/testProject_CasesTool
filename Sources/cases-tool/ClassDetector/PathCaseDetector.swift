@@ -2,7 +2,7 @@
 //  PathCaseDetector.swift
 //
 
-class PathCaseDetector: CaseDetector {
+final class PathCaseDetector: CaseDetector {
     
     public func detect(_ input: String, for caseType: CaseType) -> Bool {
         guard caseType == .pathCase else { return false }

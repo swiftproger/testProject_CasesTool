@@ -2,7 +2,7 @@
 //  ScreamingSnakeCaseDetector.swift
 //
 
-class ScreamingSnakeCaseDetector: CaseDetector {
+final class ScreamingSnakeCaseDetector: CaseDetector {
     
     public func detect(_ input: String, for caseType: CaseType) -> Bool {
         guard caseType == .screamingSnakeCase else { return false }
