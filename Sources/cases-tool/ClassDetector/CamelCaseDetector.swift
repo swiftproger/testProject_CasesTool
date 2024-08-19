@@ -4,8 +4,6 @@
 
 final class CamelCaseDetector: CaseDetector {
     
-    public init() {}
-    
     public func detect(_ input: String, for caseType: CaseType) -> Bool {
         guard caseType == .camelCase else { return false }
         
