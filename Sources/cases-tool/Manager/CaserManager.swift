@@ -13,7 +13,7 @@ public class CaserManager {
     private let caseDetectorFactory: CaseDetectorFactory
     private let stringCaseConverter: StringCaseConverter
     
-    // MARK: - Initialiser
+    // MARK: - Initializer
     
     /// Инициализирует новый экземпляр `CaserManager` с фабрикой детекторов и конвертером case.
     ///

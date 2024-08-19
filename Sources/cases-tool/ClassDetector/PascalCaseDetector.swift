@@ -7,7 +7,7 @@
 /// `PascalCaseDetector` проверяет, соответствует ли строка формату `PascalCase`, где каждое слово начинается с заглавной буквы, без разделителей между словами.
 class PascalCaseDetector: CaseDetector {
     
-    // MARK: - Initialiser
+    // MARK: - Initializer
     
     /// Инициализатор по умолчанию.
     public init() {}

@@ -7,7 +7,7 @@
 /// `ScreamingSnakeCaseDetector` проверяет, соответствует ли строка формату `SCREAMING_SNAKE_CASE`, где слова разделены символом подчеркивания (`_`), и все буквы находятся в верхнем регистре.
 class ScreamingSnakeCaseDetector: CaseDetector {
     
-    // MARK: - Initialiser
+    // MARK: - Initializer
     
     /// Инициализатор по умолчанию.
     public init() {}

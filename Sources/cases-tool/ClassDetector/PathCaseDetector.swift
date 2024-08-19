@@ -7,7 +7,7 @@
 /// `PathCaseDetector` проверяет, соответствует ли строка формату `path/case`, где слова разделяются символами слэша (`/`), и все буквы находятся в нижнем регистре.
 class PathCaseDetector: CaseDetector {
     
-    // MARK: - Initialiser
+    // MARK: - Initializer
     
     /// Инициализатор по умолчанию.
     public init() {}

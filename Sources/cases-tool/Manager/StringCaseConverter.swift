@@ -11,7 +11,7 @@ public class StringCaseConverter {
     
     private let caseDetectorFactory: CaseDetectorFactory
     
-    // MARK: - Initialiser
+    // MARK: - Initializer
     
     /// Инициализатор, принимающий фабрику для определения case.
     ///

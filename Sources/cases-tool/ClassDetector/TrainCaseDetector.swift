@@ -7,7 +7,7 @@
 /// `TrainCaseDetector` проверяет, соответствует ли строка формату `Train-Case`, где слова разделены дефисом (`-`), и каждое слово начинается с заглавной буквы.
 class TrainCaseDetector: CaseDetector {
     
-    // MARK: - Initialiser
+    // MARK: - Initializer
     
     /// Инициализатор по умолчанию.
     public init() {}

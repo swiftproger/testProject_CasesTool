@@ -15,7 +15,7 @@ public class CaseDetectorFactory {
     private let detectors: [CaseDetector]
     private let separators: Set<Character>
     
-    // MARK: - Initialiser
+    // MARK: - Initializer
     
     /// Инициализирует новую фабрику с набором детекторов для различных типов case.
     public init() {

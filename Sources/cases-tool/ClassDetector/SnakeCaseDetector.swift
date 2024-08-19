@@ -7,7 +7,7 @@
 /// `SnakeCaseDetector` проверяет, соответствует ли строка формату `snake_case`, где слова разделены символом подчеркивания (`_`), и все буквы находятся в нижнем регистре.
 class SnakeCaseDetector: CaseDetector {
     
-    // MARK: - Initialiser
+    // MARK: - Initializer
     
     /// Инициализатор по умолчанию.
     public init() {}

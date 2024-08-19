@@ -7,7 +7,7 @@
 /// `KebabCaseDetector` проверяет, соответствует ли строка формату `kebab-case`, где слова разделены символом дефиса (`-`), и все буквы находятся в нижнем регистре.
 class KebabCaseDetector: CaseDetector {
     
-    // MARK: - Initialiser
+    // MARK: - Initializer
     
     /// Инициализатор по умолчанию.
     public init() {}
