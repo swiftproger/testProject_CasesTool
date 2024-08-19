@@ -5,12 +5,7 @@
 /// Детектор для определения строк в формате `kebab-case`.
 ///
 /// `KebabCaseDetector` проверяет, соответствует ли строка формату `kebab-case`, где слова разделены символом дефиса (`-`), и все буквы находятся в нижнем регистре.
-class KebabCaseDetector: CaseDetector {
-    
-    // MARK: - Initializer
-    
-    /// Инициализатор по умолчанию.
-    public init() {}
+final class KebabCaseDetector: CaseDetector {
     
     // MARK: - Method
     

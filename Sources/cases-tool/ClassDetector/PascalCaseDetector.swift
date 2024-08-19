@@ -5,12 +5,7 @@
 /// Детектор для определения строк в формате `PascalCase`.
 ///
 /// `PascalCaseDetector` проверяет, соответствует ли строка формату `PascalCase`, где каждое слово начинается с заглавной буквы, без разделителей между словами.
-class PascalCaseDetector: CaseDetector {
-    
-    // MARK: - Initializer
-    
-    /// Инициализатор по умолчанию.
-    public init() {}
+final class PascalCaseDetector: CaseDetector {
     
     // MARK: - Method
     

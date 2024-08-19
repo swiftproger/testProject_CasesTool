@@ -5,12 +5,7 @@
 /// Детектор для определения строк в формате `dot.case`.
 ///
 /// `DotCaseDetector` проверяет, соответствует ли строка формату `dot.case`, где слова разделены точками (`.`), и все буквы находятся в нижнем регистре.
-class DotCaseDetector: CaseDetector {
-    
-    // MARK: - Initializer
-    
-    /// Инициализатор по умолчанию.
-    public init() {}
+final class DotCaseDetector: CaseDetector {
     
     // MARK: - Method
     

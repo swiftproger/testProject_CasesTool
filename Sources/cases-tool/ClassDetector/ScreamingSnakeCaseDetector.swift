@@ -5,12 +5,7 @@
 /// Детектор для определения строк в формате `SCREAMING_SNAKE_CASE`.
 ///
 /// `ScreamingSnakeCaseDetector` проверяет, соответствует ли строка формату `SCREAMING_SNAKE_CASE`, где слова разделены символом подчеркивания (`_`), и все буквы находятся в верхнем регистре.
-class ScreamingSnakeCaseDetector: CaseDetector {
-    
-    // MARK: - Initializer
-    
-    /// Инициализатор по умолчанию.
-    public init() {}
+final class ScreamingSnakeCaseDetector: CaseDetector {
     
     // MARK: - Method
     

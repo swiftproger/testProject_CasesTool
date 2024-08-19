@@ -5,12 +5,7 @@
 /// Детектор для определения строк в формате `path/case`.
 ///
 /// `PathCaseDetector` проверяет, соответствует ли строка формату `path/case`, где слова разделяются символами слэша (`/`), и все буквы находятся в нижнем регистре.
-class PathCaseDetector: CaseDetector {
-    
-    // MARK: - Initializer
-    
-    /// Инициализатор по умолчанию.
-    public init() {}
+final class PathCaseDetector: CaseDetector {
     
     // MARK: - Method
     

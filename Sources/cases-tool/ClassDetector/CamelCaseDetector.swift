@@ -5,12 +5,7 @@
 /// Детектор для определения строк в формате `camelCase`.
 ///
 /// `CamelCaseDetector` проверяет, соответствует ли строка формату `camelCase`, где первое слово начинается с маленькой буквы, а каждое последующее слово с заглавной буквы.
-class CamelCaseDetector: CaseDetector {
-    
-    // MARK: - Initializer
-    
-    /// Инициализатор по умолчанию.
-    public init() {}
+final class CamelCaseDetector: CaseDetector {
     
     // MARK: - Method
     
