@@ -19,11 +19,12 @@ final class CamelCaseDetector: CaseDetector {
     ///   - caseType: The `CaseType` that should be checked, which in this case should be `.camelCase`.
     /// - Returns: `True` if the string conforms to the `camelCase` format; otherwise, `False`.
     public func detect(_ input: String, for caseType: CaseType) -> Bool {
-
         guard caseType == .camelCase else { return false }
-        guard !CaseType.containsSeparator(in: input) else { return false }
-        guard let firstChar = input.first, firstChar.isLowercase else { return false }
         
-        return input.contains(where: \.isUppercase)
+        let hasNoSeparators = !CaseType.containsSeparator(in: input)
+        let startsWithLowercase = input.first?.isLowercase == true
+        let containsUppercase = input.contains(where: \.isUppercase)
+        
+        return hasNoSeparators && startsWithLowercase && containsUppercase
     }
 }
