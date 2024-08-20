@@ -31,7 +31,7 @@ public class CaseDetectorFactory {
         ]
         
         // Динамическое получение всех разделителей из CaseType
-        self.separators = Set(CaseType.allCases.compactMap { $0.separator })
+        self.separators = Set(CaseType.allCases.compactMap(\.separator))
     }
     
     // MARK: - Public Method
@@ -122,10 +122,8 @@ public class CaseDetectorFactory {
     /// - Returns: Определенный тип case.
     private func detectCaseType(in input: String) throws -> CaseType {
         for detector in detectors {
-            for caseType in CaseType.allCases {
-                if detector.detect(input, for: caseType) {
-                    return caseType
-                }
+            if let detectedCase = CaseType.allCases.first(where: { detector.detect(input, for: $0) }) {
+                return detectedCase
             }
         }
         throw CaserError.unknownCaseType
