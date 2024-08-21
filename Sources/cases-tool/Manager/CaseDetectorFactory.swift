@@ -17,9 +17,15 @@ public class CaseDetectorFactory {
     
     // MARK: - Initializer
     
-    /// Инициализирует новую фабрику с набором детекторов для различных типов case.
-    public init() {
-        self.detectors = [
+    public init(detectors: [CaseDetector]) {
+        self.detectors = detectors
+        
+        self.separators = Set(CaseType.allCases.compactMap(\.separator))
+    }
+    
+    
+    public convenience init() {
+        let defaultDetectors: [CaseDetector] = [
             CamelCaseDetector(),
             SnakeCaseDetector(),
             KebabCaseDetector(),
@@ -30,8 +36,7 @@ public class CaseDetectorFactory {
             PathCaseDetector()
         ]
         
-        // Динамическое получение всех разделителей из CaseType
-        self.separators = Set(CaseType.allCases.compactMap(\.separator))
+        self.init(detectors: defaultDetectors)
     }
     
     // MARK: - Public Method
@@ -110,7 +115,7 @@ public class CaseDetectorFactory {
                 result.append(char)
             }
         }
-
+        
         if uniqueSeparators.count > 1 {
             throw CaserError.multipleSeparators(separators: foundSeparators)
         }
