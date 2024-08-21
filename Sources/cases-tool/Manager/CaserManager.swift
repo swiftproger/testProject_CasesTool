@@ -2,45 +2,52 @@
 //  CaserManager.swift
 //
 
-/// Класс, объединяющий функциональность определения типа case строки и конвертации строки в другой case.
+/// A class that combines the functionality of detecting the case type of a string and converting the string to another case type.
 ///
-/// `CaserManager` предоставляет удобный интерфейс для работы со строками в различных форматах.
-/// Он позволяет определить тип case строки, а также преобразовать строку из одного case в другой.
+/// `CaserManager` provides a convenient interface for working with strings in various formats.
+/// It allows you to determine the case type of a string as well as convert the string from one case type to another.
 public class CaserManager {
     
     // MARK: - Properties
     
+    /// A factory for detecting the case type of strings.
     private let caseDetectorFactory: CaseDetectorFactory
+    
+    /// A converter for transforming strings from one case type to another.
     private let stringCaseConverter: StringCaseConverter
     
     // MARK: - Initializer
     
-    /// Инициализирует новый экземпляр `CaserManager` с фабрикой детекторов и конвертером case.
+    /// Initializes a new instance of `CaserManager` with a case detector factory and a case converter.
     ///
-    /// Инициализация выполняется с использованием стандартной фабрики `CaseDetectorFactory` и конвертера `StringCaseConverter`.
+    /// The initialization is performed using the standard `CaseDetectorFactory` and `StringCaseConverter`.
     public init() {
         self.caseDetectorFactory = CaseDetectorFactory()
         self.stringCaseConverter = StringCaseConverter(factory: caseDetectorFactory)
     }
     
-    // MARK: - Method
+    // MARK: - Methods
     
-    /// Определяет тип case строки.
+    /// Determines the case type of a string.
     ///
-    /// - Parameter input: Строка для анализа.
-    /// - Throws: `CaserError` в случае ошибок при анализе строки.
-    /// - Returns: Определенный тип case.
+    /// This method analyzes the input string and identifies its case type, such as `camelCase`, `snake_case`, `PascalCase`, etc.
+    ///
+    /// - Parameter input: The string to be analyzed.
+    /// - Throws: `CaserError` in case of errors during string analysis.
+    /// - Returns: The determined case type.
     public func detectCase(of input: String) throws -> CaseType {
         return try caseDetectorFactory.detectCase(of: input)
     }
     
-    /// Конвертирует строку из одного case в другой.
+    /// Converts a string from one case type to another.
+    ///
+    /// This method takes a string in one case format and converts it to the specified target case format.
     ///
     /// - Parameters:
-    ///   - input: Строка для конвертации.
-    ///   - targetCaseType: Целевой case, в который нужно конвертировать строку.
-    /// - Throws: `CaserError` в случае ошибок при анализе или конвертации строки.
-    /// - Returns: Строка, конвертированная в целевой case.
+    ///   - input: The string to be converted.
+    ///   - targetCaseType: The target case type to which the string should be converted.
+    /// - Throws: `CaserError` in case of errors during string analysis or conversion.
+    /// - Returns: The string converted to the target case format.
     public func convert(_ input: String, to targetCaseType: CaseType) throws -> String {
         return try stringCaseConverter.convert(input, to: targetCaseType)
     }
