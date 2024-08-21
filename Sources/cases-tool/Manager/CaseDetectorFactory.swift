@@ -2,28 +2,33 @@
 //  CamelCaseDetector.swift
 //
 
-/// Фабрика для определения типа case строки.
+/// A factory for determining the case type of a string.
 ///
-/// `CaseDetectorFactory` отвечает за анализ строки и определение её типа case (например, `camelCase`, `snake_case`, `PascalCase` и другие).
-/// В процессе анализа строка проходит через различные проверки, включая проверку на наличие лишних разделителей в начале и конце строки,
-/// проверку на наличие нескольких подряд идущих одинаковых разделителей и проверку на наличие нескольких разных разделителей.
-
+/// `CaseDetectorFactory` is responsible for analyzing a string and identifying its case type
+/// (e.g., `camelCase`, `snake_case`, `PascalCase`, and others). During the analysis, the string
+/// undergoes various checks, including checking for unnecessary separators at the beginning and end
+/// of the string, verifying the presence of consecutive identical separators, and ensuring that the
+/// string does not contain multiple different separators.
 public class CaseDetectorFactory {
     
     // MARK: - Properties
     
+    /// An array of detectors used to identify the case type of a string.
     private let detectors: [CaseDetector]
+    
+    /// A set of characters representing all possible separators from different case types.
     private let separators: Set<Character>
     
     // MARK: - Initializer
     
+    /// Initializes the factory with a given array of detectors.
+    /// - Parameter detectors: An array of `CaseDetector` instances used to identify the case type.
     public init(detectors: [CaseDetector]) {
         self.detectors = detectors
-        
         self.separators = Set(CaseType.allCases.compactMap(\.separator))
     }
     
-    
+    /// Convenience initializer that creates a factory with a default set of detectors.
     public convenience init() {
         let defaultDetectors: [CaseDetector] = [
             CamelCaseDetector(),
@@ -35,16 +40,15 @@ public class CaseDetectorFactory {
             DotCaseDetector(),
             PathCaseDetector()
         ]
-        
         self.init(detectors: defaultDetectors)
     }
     
     // MARK: - Public Method
     
-    /// Основной метод для определения типа case строки.
-    /// - Parameter input: Строка для анализа.
-    /// - Throws: `CaserError` в случае ошибок при анализе строки.
-    /// - Returns: Определенный тип case.
+    /// The main method for determining the case type of a string.
+    /// - Parameter input: The string to be analyzed.
+    /// - Throws: `CaserError` in case of errors during the analysis.
+    /// - Returns: The identified case type.
     public func detectCase(of input: String) throws -> CaseType {
         try checkLeadingAndTrailingSeparators(in: input)
         try checkForExtraSequencedSeparators(in: input)
@@ -55,9 +59,10 @@ public class CaseDetectorFactory {
     
     // MARK: - Private Methods
     
-    /// Проверяет наличие лишних разделителей в начале и конце строки.
-    /// - Parameter input: Строка для анализа.
-    /// - Throws: `CaserError.uselessLeadingSeparator`, если разделитель в начале строки, или `CaserError.uselessTrailingSeparator`, если разделитель в конце строки.
+    /// Checks for unnecessary separators at the beginning and end of the string.
+    /// - Parameter input: The string to be analyzed.
+    /// - Throws: `CaserError.uselessLeadingSeparator` if a separator is found at the beginning of the string,
+    /// or `CaserError.uselessTrailingSeparator` if a separator is found at the end of the string.
     private func checkLeadingAndTrailingSeparators(in input: String) throws {
         if let firstChar = input.first, separators.contains(firstChar) {
             throw CaserError.uselessLeadingSeparator(separator: firstChar)
@@ -68,9 +73,9 @@ public class CaseDetectorFactory {
         }
     }
     
-    /// Проверяет наличие нескольких подряд идущих одинаковых разделителей.
-    /// - Parameter input: Строка для анализа.
-    /// - Throws: `CaserError.extraSequencedSeparators`, если найдены последовательные одинаковые разделители.
+    /// Checks for consecutive identical separators in the string.
+    /// - Parameter input: The string to be analyzed.
+    /// - Throws: `CaserError.extraSequencedSeparators` if consecutive identical separators are found.
     private func checkForExtraSequencedSeparators(in input: String) throws {
         var previousChar: Character?
         var currentSequence = ""
@@ -104,9 +109,9 @@ public class CaseDetectorFactory {
         }
     }
     
-    /// Проверяет наличие нескольких различных разделителей в строке.
-    /// - Parameter input: Строка для анализа.
-    /// - Throws: `CaserError.multipleSeparators`, если найдены различные разделители.
+    /// Checks for multiple different separators in the string.
+    /// - Parameter input: The string to be analyzed.
+    /// - Throws: `CaserError.multipleSeparators` if different separators are found.
     private func checkForMultipleSeparators(in input: String) throws {
         let foundSeparators = Array(input.filter { separators.contains($0) || (!$0.isLetter && !$0.isNumber) })
         
@@ -121,10 +126,10 @@ public class CaseDetectorFactory {
         }
     }
     
-    /// Определяет тип case строки на основе доступных детекторов.
-    /// - Parameter input: Строка для анализа.
-    /// - Throws: `CaserError.unknownCaseType`, если тип case не был определен.
-    /// - Returns: Определенный тип case.
+    /// Determines the case type of the string based on the available detectors.
+    /// - Parameter input: The string to be analyzed.
+    /// - Throws: `CaserError.unknownCaseType` if the case type could not be determined.
+    /// - Returns: The identified case type.
     private func detectCaseType(in input: String) throws -> CaseType {
         for detector in detectors {
             if let detectedCase = CaseType.allCases.first(where: { detector.detect(input, for: $0) }) {
