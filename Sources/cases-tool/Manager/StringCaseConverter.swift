@@ -68,25 +68,26 @@ public class StringCaseConverter {
     /// - Throws: `CaserError`, если тип case не определен.
     /// - Returns: Строка, объединенная в целевой тип case.
     private func joinWords(_ words: [String], to caseType: CaseType) throws -> String {
+        
+        let separator = caseType.separator.map { String($0) } ?? ""
+        
         switch caseType {
-        case .snakeCase:
-            return words.joined(separator: "_").lowercased()
-        case .kebabCase:
-            return words.joined(separator: "-").lowercased()
+        case .snakeCase, .kebabCase, .dotCase, .pathCase:
+            return words.joined(separator: separator).lowercased()
+            
         case .camelCase:
             let firstWord = words.first?.lowercased() ?? ""
             let otherWords = words.dropFirst().map(\.capitalized)
             return ([firstWord] + otherWords).joined()
+            
         case .pascalCase:
             return words.map(\.capitalized).joined()
+            
         case .trainCase:
-            return words.map(\.capitalized).joined(separator: "-")
+            return words.map(\.capitalized).joined(separator: separator)
+            
         case .screamingSnakeCase:
-            return words.joined(separator: "_").uppercased()
-        case .dotCase:
-            return words.joined(separator: ".").lowercased()
-        case .pathCase:
-            return words.joined(separator: "/").lowercased()
+            return words.joined(separator: separator).uppercased()
         }
     }
     
