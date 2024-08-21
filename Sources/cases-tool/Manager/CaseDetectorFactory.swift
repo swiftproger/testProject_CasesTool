@@ -48,7 +48,7 @@ public class CaseDetectorFactory {
         return try detectCaseType(in: input)
     }
     
-    // MARK: - Private Method
+    // MARK: - Private Methods
     
     /// Проверяет наличие лишних разделителей в начале и конце строки.
     /// - Parameter input: Строка для анализа.
@@ -103,15 +103,15 @@ public class CaseDetectorFactory {
     /// - Parameter input: Строка для анализа.
     /// - Throws: `CaserError.multipleSeparators`, если найдены различные разделители.
     private func checkForMultipleSeparators(in input: String) throws {
-        var foundSeparators: [Character] = []
+        let foundSeparators = Array(input.filter { separators.contains($0) || (!$0.isLetter && !$0.isNumber) })
         
-        for char in input {
-            if separators.contains(char) || (!char.isLetter && !char.isNumber) {
-                foundSeparators.append(char)
+        let uniqueSeparators = foundSeparators.reduce(into: [Character]()) { result, char in
+            if !result.contains(char) {
+                result.append(char)
             }
         }
-        
-        if Set(foundSeparators).count > 1 {
+
+        if uniqueSeparators.count > 1 {
             throw CaserError.multipleSeparators(separators: foundSeparators)
         }
     }
