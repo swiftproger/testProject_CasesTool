@@ -74,13 +74,13 @@ public class StringCaseConverter {
         case .kebabCase:
             return words.joined(separator: "-").lowercased()
         case .camelCase:
-            let firstWord = words.first!.lowercased()
-            let otherWords = words.dropFirst().map { $0.capitalized }
+            let firstWord = words.first?.lowercased() ?? ""
+            let otherWords = words.dropFirst().map(\.capitalized)
             return ([firstWord] + otherWords).joined()
         case .pascalCase:
-            return words.map { $0.capitalized }.joined()
+            return words.map(\.capitalized).joined()
         case .trainCase:
-            return words.map { $0.capitalized }.joined(separator: "-")
+            return words.map(\.capitalized).joined(separator: "-")
         case .screamingSnakeCase:
             return words.joined(separator: "_").uppercased()
         case .dotCase:
