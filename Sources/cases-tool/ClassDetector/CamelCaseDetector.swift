@@ -2,25 +2,13 @@
 //  CamelCaseDetector.swift
 //
 
-/// A detector for identifying strings in `camelCase` format.
-///
-/// The `CamelCaseDetector` checks whether a given string conforms to the `camelCase` format,
-/// where the first word starts with a lowercase letter, and each subsequent word starts with an uppercase letter
-/// with no separators between the words.
 final class CamelCaseDetector: CaseDetector {
+    
+    var caseType: CaseType {
+        return .camelCase
+    }
 
-    /// Determines whether the given string conforms to the `camelCase` format.
-    ///
-    /// This method first verifies that the specified `CaseType` is `.camelCase`. It then checks if the input string
-    /// does not contain any separators, begins with a lowercase letter, and contains at least one uppercase letter.
-    ///
-    /// - Parameters:
-    ///   - input: The string to be analyzed.
-    ///   - caseType: The `CaseType` that should be checked, which in this case should be `.camelCase`.
-    /// - Returns: `True` if the string conforms to the `camelCase` format; otherwise, `False`.
-    public func detect(_ input: String, for caseType: CaseType) -> Bool {
-        guard caseType == .camelCase else { return false }
-        
+    public func detect(_ input: String) -> Bool {
         let hasNoSeparators = !CaseType.containsSeparator(in: input)
         let startsWithLowercase = input.first?.isLowercase == true
         let containsUppercase = input.contains(where: \.isUppercase)

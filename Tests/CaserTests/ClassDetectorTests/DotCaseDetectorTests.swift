@@ -10,14 +10,14 @@ class DotCaseDetectorTests: XCTestCase {
     func testDotCaseDetector() {
         let detector = DotCaseDetector()
         
-        XCTAssertTrue(detector.detect("dot.case.string", for: .dotCase))
-        XCTAssertFalse(detector.detect("DotCaseString", for: .dotCase))
-        XCTAssertFalse(detector.detect("dot_case_string", for: .dotCase))
-        XCTAssertFalse(detector.detect("dotcasestring", for: .dotCase))
-        XCTAssertFalse(detector.detect("Dot.Case.Example", for: .dotCase))
-        XCTAssertFalse(detector.detect("Dot.case.example", for: .dotCase))
-        XCTAssertFalse(detector.detect("dot.case_example", for: .dotCase))
-        XCTAssertFalse(detector.detect("", for: .dotCase))
-        XCTAssertFalse(detector.detect("...", for: .dotCase))
+        XCTAssertTrue(detector.detect("dot.case.string"))
+        XCTAssertFalse(detector.detect("DotCaseString"))
+        XCTAssertFalse(detector.detect("dot._case_string"))
+        XCTAssertFalse(detector.detect("dotcasestring"))
+        XCTAssertFalse(detector.detect("Dot.Case.Example"))
+        XCTAssertFalse(detector.detect("Dot.case.example"))
+        XCTAssertFalse(detector.detect("dot.case_example"))
+        XCTAssertFalse(detector.detect(""))
+        XCTAssertFalse(detector.detect("..."))
     }
 }

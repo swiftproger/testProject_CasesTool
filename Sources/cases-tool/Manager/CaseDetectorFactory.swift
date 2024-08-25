@@ -132,10 +132,11 @@ public class CaseDetectorFactory {
     /// - Returns: The identified case type.
     private func detectCaseType(in input: String) throws -> CaseType {
         for detector in detectors {
-            if let detectedCase = CaseType.allCases.first(where: { detector.detect(input, for: $0) }) {
-                return detectedCase
+            if detector.detect(input) {
+                return detector.caseType
             }
         }
         throw CaserError.unknownCaseType
     }
+
 }

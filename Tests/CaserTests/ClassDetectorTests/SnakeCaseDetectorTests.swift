@@ -10,16 +10,16 @@ class SnakeCaseDetectorTests: XCTestCase {
     func testSnakeCaseDetector() {
         let detector = SnakeCaseDetector()
         
-        XCTAssertTrue(detector.detect("snake_case_string", for: .snakeCase))
-        XCTAssertFalse(detector.detect("SnakeCaseString", for: .snakeCase))
-        XCTAssertFalse(detector.detect("snake-case-string", for: .snakeCase))
-        XCTAssertFalse(detector.detect("snakecasestring", for: .snakeCase))
-        XCTAssertFalse(detector.detect("Snake_Case_Example", for: .snakeCase))
-        XCTAssertFalse(detector.detect("snake_Case_example", for: .snakeCase))
-        XCTAssertFalse(detector.detect("snake-case-example", for: .snakeCase))
-        XCTAssertFalse(detector.detect("snake.case.example", for: .snakeCase))
-        XCTAssertFalse(detector.detect("snakecasestring", for: .snakeCase))
-        XCTAssertFalse(detector.detect("___", for: .snakeCase))
-        XCTAssertFalse(detector.detect("", for: .snakeCase))
+        XCTAssertTrue(detector.detect("snake_case_string"))
+        XCTAssertFalse(detector.detect("SnakeCaseString"))
+        XCTAssertFalse(detector.detect("snake-case-string"))
+        XCTAssertFalse(detector.detect("snakecasestring"))
+        XCTAssertFalse(detector.detect("Snake_Case_Example"))
+        XCTAssertFalse(detector.detect("snake_Case_example"))
+        XCTAssertFalse(detector.detect("snake-case-example"))
+        XCTAssertFalse(detector.detect("snake.case.example"))
+        XCTAssertFalse(detector.detect("snakecasestring"))
+        XCTAssertFalse(detector.detect("___"))
+        XCTAssertFalse(detector.detect(""))
     }
 }

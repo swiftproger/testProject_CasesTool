@@ -13,13 +13,13 @@ class PascalCaseDetectorTests: XCTestCase {
     func testPascalCaseDetector() {
         let detector = PascalCaseDetector()
         
-        XCTAssertTrue(detector.detect("PascalCaseString", for: .pascalCase))
-        XCTAssertFalse(detector.detect("pascalCaseString", for: .pascalCase))
-        XCTAssertFalse(detector.detect("pascal_case_string", for: .pascalCase))
-        XCTAssertFalse(detector.detect("pascalcasestring", for: .pascalCase))
-        XCTAssertFalse(detector.detect("PASCALCASEEXAMPLE", for: .pascalCase))
-        XCTAssertFalse(detector.detect("Pascal_Case_Example", for: .pascalCase))
-        XCTAssertFalse(detector.detect("Pascal_CaseExample", for: .pascalCase))
-        XCTAssertFalse(detector.detect("", for: .pascalCase))
+        XCTAssertTrue(detector.detect("PascalCaseString"))
+        XCTAssertFalse(detector.detect("pascalCaseString"))
+        XCTAssertFalse(detector.detect("pascal_case_string"))
+        XCTAssertFalse(detector.detect("pascalcasestring"))
+        XCTAssertFalse(detector.detect("PASCALCASEEXAMPLE"))
+        XCTAssertFalse(detector.detect("Pascal_Case_Example"))
+        XCTAssertFalse(detector.detect("Pascal_CaseExample"))
+        XCTAssertFalse(detector.detect(""))
     }
 }
