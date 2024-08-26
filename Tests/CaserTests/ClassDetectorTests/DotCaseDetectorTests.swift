@@ -11,6 +11,7 @@ class DotCaseDetectorTests: XCTestCase {
         let detector = DotCaseDetector()
         
         XCTAssertTrue(detector.detect("dot.case.string"))
+        XCTAssertFalse(detector.detect("dot^.case.string"))
         XCTAssertFalse(detector.detect("DotCaseString"))
         XCTAssertFalse(detector.detect("dot._case_string"))
         XCTAssertFalse(detector.detect("dotcasestring"))

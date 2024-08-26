@@ -16,6 +16,7 @@ class PascalCaseDetectorTests: XCTestCase {
         XCTAssertTrue(detector.detect("PascalCaseString"))
         XCTAssertFalse(detector.detect("pascalCaseString"))
         XCTAssertFalse(detector.detect("pascal_case_string"))
+        XCTAssertFalse(detector.detect("pascal_case_#string"))
         XCTAssertFalse(detector.detect("pascalcasestring"))
         XCTAssertFalse(detector.detect("PASCALCASEEXAMPLE"))
         XCTAssertFalse(detector.detect("Pascal_Case_Example"))
