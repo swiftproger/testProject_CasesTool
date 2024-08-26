@@ -17,7 +17,7 @@ extension CaseDetector {
         
         let containsSeparator = input.contains(separator)
         let noOtherSeparators = !CaseType.containsOtherSeparators(in: input, excluding: caseType)
-        let hasValidCharacters = !input.filter { $0 != separator }.isEmpty
+        let hasValidCharacters = input.contains { $0.isLetter }
         
         return containsOnlyValidCharacters && containsSeparator && noOtherSeparators && hasValidCharacters
     }
