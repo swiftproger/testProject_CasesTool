@@ -3,12 +3,9 @@
 //
 
 final class KebabCaseDetector: CaseDetector {
-
-    var caseType: CaseType {
-        return .kebabCase
-    }
+    var caseType: CaseType { return .kebabCase }
 
     public func detect(_ input: String) -> Bool {
-        return hasValidSeparatorStructure(input) && input == input.lowercased()
+        return detectUsingSeparator(input)
     }
 }

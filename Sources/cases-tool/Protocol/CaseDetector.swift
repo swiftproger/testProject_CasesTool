@@ -21,4 +21,12 @@ extension CaseDetector {
         
         return containsOnlyValidCharacters && containsSeparator && noOtherSeparators && hasValidCharacters
     }
+    
+    func detectUsingSeparator(_ input: String, isUppercase: Bool = false) -> Bool {
+        guard hasValidSeparatorStructure(input) else { return false }
+        
+        let isCorrectCase = isUppercase ? input == input.uppercased() : input == input.lowercased()
+        
+        return isCorrectCase
+    }
 }

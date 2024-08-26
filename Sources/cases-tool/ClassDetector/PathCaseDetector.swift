@@ -9,6 +9,6 @@ final class PathCaseDetector: CaseDetector {
     }
 
     public func detect(_ input: String) -> Bool {
-        return hasValidSeparatorStructure(input) && input == input.lowercased()
+        return detectUsingSeparator(input)
     }
 }
