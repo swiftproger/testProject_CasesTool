@@ -90,22 +90,4 @@ extension CaseType {
             .compactMap(\.separator)
             .contains(where: input.contains)
     }
-    
-    /// Checks if the given string contains any separators other than the one associated with the specified `CaseType`.
-    ///
-    /// This method iterates through all `CaseType` values, extracts their associated separators, and filters
-    /// them based on their presence in the input string. It then checks if any of the separators found are different
-    /// from the separator associated with the given `CaseType`.
-    ///
-    /// - Parameters:
-    ///   - input: The string to be checked for the presence of separators.
-    ///   - currentCaseType: The `CaseType` whose separator should be excluded from the check.
-    /// - Returns: `True` if the input string contains any separator different from the one associated with the
-    ///   specified `CaseType`, otherwise `False`.
-    public static func containsOtherSeparators(in input: String, excluding currentCaseType: CaseType) -> Bool {
-        return allCases
-            .compactMap(\.separator)
-            .filter(input.contains)
-            .contains { $0 != currentCaseType.separator }
-    }
 }

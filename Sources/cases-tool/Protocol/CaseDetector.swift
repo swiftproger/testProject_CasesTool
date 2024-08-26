@@ -11,15 +11,11 @@ extension CaseDetector {
     func hasValidSeparatorStructure(_ input: String) -> Bool {
         guard let separator = caseType.separator else { return false }
         
-        let containsOnlyValidCharacters = input.allSatisfy { char in
-            char.isLetter || char == separator
-        }
-        
         let containsSeparator = input.contains(separator)
-        let noOtherSeparators = !CaseType.containsOtherSeparators(in: input, excluding: caseType)
-        let hasValidCharacters = input.contains { $0.isLetter }
+        let containsOnlyValidCharacters = input.allSatisfy { $0.isLetter || $0 == separator }
+        let hasLetters = input.contains { $0.isLetter }
         
-        return containsOnlyValidCharacters && containsSeparator && noOtherSeparators && hasValidCharacters
+        return containsSeparator && containsOnlyValidCharacters && hasLetters
     }
     
     func detectUsingSeparator(_ input: String, isUppercase: Bool = false) -> Bool {
