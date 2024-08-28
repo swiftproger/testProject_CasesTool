@@ -1,5 +1,5 @@
 #name of your config
-name: Swift
+name: UNIT Test status
 
 #when to trigger the jobs
 on: 
