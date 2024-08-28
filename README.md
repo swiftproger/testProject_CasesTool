@@ -1,4 +1,4 @@
-[![UNIT Test status](https://github.com/swiftproger/testProject_incetro_CasesTool/actions/workflows/ci.yml/badge.svg)](https://github.com/swiftproger/testProject_incetro_CasesTool/actions/workflows/ci.yml)
+[![Status unit-tests ](https://github.com/swiftproger/testProject_incetro_CasesTool/actions/workflows/ci.yml/badge.svg)](https://github.com/swiftproger/testProject_incetro_CasesTool/actions/workflows/ci.yml)
 
 # Cases Tool
 

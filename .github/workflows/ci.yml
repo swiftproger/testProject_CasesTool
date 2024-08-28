@@ -1,5 +1,5 @@
 #name of your config
-name: UNIT Test status
+name: Status unit-tests 
 
 #when to trigger the jobs
 on: 
