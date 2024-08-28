@@ -10,7 +10,7 @@ class CamelCaseDetectorTests: XCTestCase {
     func testCamelCaseDetector() {
         let detector = CamelCaseDetector()
         
-        XCTAssertTrue(detector.detect("CamelCaseExample")) // FALSE test for CI
+        XCTAssertTrue(detector.detect("camelCaseExample"))
         XCTAssertFalse(detector.detect("lowercasestring"))
         XCTAssertFalse(detector.detect("CamelCaseExample"))
         XCTAssertFalse(detector.detect("camel-case_example"))
