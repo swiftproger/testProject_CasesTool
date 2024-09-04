@@ -1,6 +1,6 @@
 [![Status unit-tests ](https://github.com/swiftproger/testProject_incetro_CasesTool/actions/workflows/ci.yml/badge.svg)](https://github.com/swiftproger/testProject_incetro_CasesTool/actions/workflows/ci.yml)
 ![Swift Version](https://img.shields.io/badge/Swift-5.8-orange.svg)
-[![codecov](https://codecov.io/gh/swiftproger/testProject_incetro_CasesTool/branch/master/graph/badge.svg)](https://codecov.io/gh/swiftproger/testProject_incetro_CasesTool)
+![Project Status](https://img.shields.io/badge/status-completed-brightgreen)
 
 
 
